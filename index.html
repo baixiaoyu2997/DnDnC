@@ -6,43 +6,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./test.css">
+    <script src="./Chart.js"></script>
+    <script src="./zepto.min.js"></script>
+    <script src="./touch-dnd.js"></script>
 </head>
 
 <body>
-    <style>
-        div {
-            border: 1px solid black;
-        }
-        #test1{
-            display: flex;
-        }
-        .test2{
-            width: 100px;
-            height: 100px;
-        }
-        .test3{
-            width: 100px;
-            height: 100px;
-        }
-        .test4{
-            width: 200px;
-            height: 200px;
-        }
-    </style>
     <div id="test1">
-        <div class="test2">12</div>
-        <div class="test3">34</div>
-        <div class="test4"></div>
+        <div id="test2">12</div>
+        <div id="test3">34</div>
     </div>
-  
-    <script src="./zepto.min.js"></script>
-    <script src="./touch-dnd.js"></script>
+    <div id="test5" style="width:400px;height:400px">
+        <canvas id="myChart" width="100"></canvas>
+    </div>
     <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June",
+                    "July"
+                ],
+                datasets: [{
+                    label: "My First dataset",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [0, 10, 5, 2, 20, 30, 45],
+                }]
+            },
+
+            options: {}
+        });
+
         $(function () {
-            $('.test2').draggable();
-            $('.test3').draggable();
-            $('.test4').droppable();
+            $('#test2').draggable();
+            $('#test3').draggable();
+            $('#test5').droppable({
+                receiveHandler: function (ui) {
+                    console.log(ui);
+                    if (ui.item[0].id == "test3") {
+                        changeData();
+                    }else{
+                        alert(1);
+                    }
+                }
+            })
         })
+
+        function changeData() {
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ["数据1", "数据2", "数据3", "数据4", "数据5", "数据6",
+                        "数据7"
+                    ],
+                    datasets: [{
+                        label: "测试而已",
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: [0, 10, 5, 2, 20, 30, 45],
+                    }]
+                },
+                options: {}
+            });
+        }
     </script>
 </body>
 
