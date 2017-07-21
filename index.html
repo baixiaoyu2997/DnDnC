@@ -1,47 +1,39 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="author" content="和派孔明" />
-    <meta name="copyright" content="和派孔明" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-    <title>关于zepto.js的移动端拖拽写法</title>
-    <style>
-        #div1 {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 200px;
-            height: 200px;
-            background: #ccc;
-        }
-    </style>
-    <script src="zepto.min.js"></script>
-
-    <script>
-        $(function () {
-
-        var disX = ev.targetTouches[0].pageX - $(this).position().left;
-        var disY = ev.targetTouches[0].pageY - $(this).position().top;
-
-        $(this).on("touchmove", function (ev) {
-            $(this).css({
-                left: ev.targetTouches[0].pageX - disX + "px",
-                top: ev.targetTouches[0].pageY - disY + "px"
-            });
-        });
-
-        $(this).on("touchend", function () {
-            $(this).off('touchstart', 'touchmove');
-        });
-        });
-     
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 
 <body>
-    <div id="div1"></div>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+    <div id="test1">
+        123
+    </div>
+    <div id="test2">
+        sdfkjsdlkfj
+    </div>
+    <div id="test3">
+            456
+    </div>
+    <script src="./zepto.min.js"></script>
+    <script src="./touch-dnd.js"></script>
+    <script>
+        $(function () {
+            $('#test1').draggable();
+            $('#test2').draggable();
+            $('#test3').droppable()
+        })
+    </script>
 </body>
 
 </html>
