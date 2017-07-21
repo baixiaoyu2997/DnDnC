@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <link href="./dragula.min.css">
+    <script src="./dragula.min.js">
+    </script>
+    <style>
+        #test1,
+        #test2 {
+            width: 200px;
+            height: 200px;
+            /* background-color: black; */
+            color: #fff;
+            border: 1px solid #fff;
+        }
+
+        #test1 div,
+        #test2 div {
+            background: skyblue;
+            width: 150px;
+            height: 50px;
+        }
+    </style>
+    <div id="test1">
+        <div>sdfsdfsdf</div>
+        <div>123</div>
+    </div>
+    <div id="test2">
+        <div>ckjvlkjvn</div>
+        <div>456</div>
+    </div>
+    <script>
+        dragula([document.getElementById("test1"), document.getElementById("test2")], {
+            moves: function (el, container) {
+                return true; // elements are always draggable by default
+            },
+            accepts: function (el, target, source, sibling) {
+                return true; // elements can be dropped in any of the `containers` by default
+            },
+            direction: 'vertical', // Y axis is considered when determining where an element would be dropped
+            copy: false, // elements are moved by default, not copied
+            revertOnSpill: false, // spilling will put the element back where it was dragged from, if this is true
+            removeOnSpill: false // spilling will `.remove` the element, if this is true
+        });
+    </script>
+</body>
+
+</html>
