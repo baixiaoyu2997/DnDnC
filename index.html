@@ -11,27 +11,37 @@
 <body>
     <style>
         div {
+            border: 1px solid black;
+        }
+        #test1{
+            display: flex;
+        }
+        .test2{
             width: 100px;
             height: 100px;
-            border: 1px solid black;
+        }
+        .test3{
+            width: 100px;
+            height: 100px;
+        }
+        .test4{
+            width: 200px;
+            height: 200px;
         }
     </style>
     <div id="test1">
-        123
+        <div class="test2">12</div>
+        <div class="test3">34</div>
+        <div class="test4"></div>
     </div>
-    <div id="test2">
-        sdfkjsdlkfj
-    </div>
-    <div id="test3">
-            456
-    </div>
+  
     <script src="./zepto.min.js"></script>
     <script src="./touch-dnd.js"></script>
     <script>
         $(function () {
-            $('#test1').draggable();
-            $('#test2').draggable();
-            $('#test3').droppable();
+            $('.test2').draggable();
+            $('.test3').draggable();
+            $('.test4').droppable();
         })
     </script>
 </body>
